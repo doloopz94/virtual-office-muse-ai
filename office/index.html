@@ -1,15 +1,15 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Kantor Virtual — Bos Rifki</title>
+<title>Virtual Office</title>
 <style>
   :root{
     --navy:#0f2a43; --navy2:#14395c; --bg:#f3efe7; --card:#ffffff; --ink:#1c2733;
     --muted:#5b6b7a; --line:#e2dccd; --radius:14px;
-    --bima:#2563eb; --satya:#dc2626; --bimbing:#7c3aed; --ngajar:#059669;
-    --riset:#0891b2; --kabar:#ea580c; --audit:#475569;
+    --grants:#2563eb; --compliance:#dc2626; --mentoring:#7c3aed; --teaching:#059669;
+    --research:#0891b2; --content:#ea580c; --review:#475569;
   }
   *{box-sizing:border-box}
   body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--ink)}
@@ -32,7 +32,7 @@
   .hint b{color:#4d3f08}
   h2{font-size:22px;margin:4px 0 6px}
   .lead{color:var(--muted);margin:0 0 18px;line-height:1.55}
-  /* ---- Denah ---- */
+  /* ---- Floor plan ---- */
   .floor{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:22px;box-shadow:0 2px 10px rgba(15,42,67,.06)}
   .floor-label{font-size:12px;font-weight:700;letter-spacing:.12em;color:var(--muted);text-transform:uppercase;margin-bottom:14px}
   .desks{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
@@ -48,7 +48,7 @@
   .meeting p{margin:0;color:var(--muted);font-size:14px;line-height:1.5}
   .legend{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
   .legend span{font-size:12.5px;background:#eef2f7;border-radius:999px;padding:5px 11px}
-  /* ---- Papan ---- */
+  /* ---- Board ---- */
   .board{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;align-items:start}
   .col{background:#e9e4d6;border-radius:var(--radius);padding:12px;min-height:220px}
   .col h3{margin:2px 4px 10px;font-size:15px;display:flex;justify-content:space-between;align-items:center}
@@ -59,9 +59,9 @@
   .card.dragging{opacity:.45}
   .card .unit{display:inline-block;font-size:11px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:#fff;padding:3px 9px;border-radius:999px}
   .card .prio{display:inline-block;font-size:11px;font-weight:700;padding:3px 9px;border-radius:999px;margin-left:5px}
-  .prio.biasa{background:#eef2f7;color:#334155}
-  .prio.penting{background:#fde8e8;color:#b91c1c}
-  .prio.mendesak{background:#b91c1c;color:#fff}
+  .prio.normal{background:#eef2f7;color:#334155}
+  .prio.important{background:#fde8e8;color:#b91c1c}
+  .prio.urgent{background:#b91c1c;color:#fff}
   .card h4{margin:9px 0 6px;font-size:15px;line-height:1.4}
   .card p{margin:0 0 8px;font-size:13.5px;line-height:1.55;color:#3c4a58}
   .card select{width:100%;font-size:13px;padding:7px;border-radius:8px;border:1px solid var(--line);background:#fff}
@@ -69,7 +69,7 @@
   .board-tools button{border:1px solid var(--line);background:#fff;border-radius:9px;padding:8px 14px;font-size:13.5px;font-weight:600;cursor:pointer}
   .board-tools button:hover{background:#f0ece1}
   .board-tools span{font-size:13.5px;color:var(--muted)}
-  /* ---- Rekrut ---- */
+  /* ---- Recruit ---- */
   .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:22px}
   .step{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:16px}
   .step .no{width:34px;height:34px;border-radius:50%;background:var(--navy);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;margin-bottom:10px}
@@ -82,7 +82,7 @@
   .skill{background:#fff;border:1px solid var(--line);border-radius:12px;padding:13px 14px}
   .skill code{font-size:13.5px;font-weight:700;color:var(--navy)}
   .skill p{margin:6px 0 0;font-size:13px;line-height:1.5;color:#3c4a58}
-  .skill .meja{margin-top:8px;font-size:12px;color:var(--muted)}
+  .skill .desk{margin-top:8px;font-size:12px;color:var(--muted)}
   footer{border-top:1px solid var(--line);padding:18px 0 30px;color:var(--muted);font-size:13px;line-height:1.6}
   footer a{color:var(--navy)}
   @media (max-width:900px){
@@ -107,116 +107,118 @@
 <header>
   <div class="wrap">
     <div>
-      <h1>🏢 Kantor Virtual</h1>
-      <p class="subtitle">Kantornya Bos Rifki · dikelola Kadal Budug (Muse) · 7 meja, 1 manajer</p>
+      <h1>🏢 Virtual Office</h1>
+      <p class="subtitle">Run by Muse · 7 desks, 1 manager</p>
     </div>
     <div class="clock">
       <div class="time" id="clock">--:--:--</div>
-      <div class="date" id="date">WIB</div>
+      <div class="date" id="date">Local time</div>
     </div>
   </div>
 </header>
 <nav>
   <div class="wrap">
-    <a href="#denah" id="nav-denah">🗺️ Denah</a>
-    <a href="#papan" id="nav-papan">📌 Papan Tugas</a>
-    <a href="#rekrut" id="nav-rekrut">🧑‍💼 Rekrut</a>
+    <a href="#floor" id="nav-floor">🗺️ Floor plan</a>
+    <a href="#board" id="nav-board">📌 Task Board</a>
+    <a href="#recruit" id="nav-recruit">🧑‍💼 Recruit</a>
   </div>
 </nav>
 <main>
   <div class="wrap">
 
-    <!-- ============ DENAH ============ -->
-    <section class="view" id="view-denah">
-      <h2>Denah Kantor</h2>
-      <p class="lead">Tujuh meja, masing-masing satu unit kerja. Klik sebuah meja untuk melihat tugasnya di papan.</p>
+    <!-- ============ FLOOR PLAN ============ -->
+    <section class="view" id="view-floor">
+      <h2>Office Floor Plan</h2>
+      <p class="lead">Seven desks, one work unit each. Click a desk to see its tasks on the board.</p>
       <div class="floor">
-        <div class="floor-label">Lantai Kantor Virtual · Universitas Harkat Negeri</div>
+        <div class="floor-label">Virtual Office floor · Example layout — rename the desks to fit your own work</div>
         <div class="desks" id="desks"></div>
         <div class="legend" id="legend"></div>
       </div>
-      <div class="hint" style="margin-top:18px">💡 <b>Versi mandiri.</b> Ini pembangunan ulang statis dari Kantor Virtual yang berjalan di Muse. Data tugas di sini tersimpan di <b>localStorage</b> perambanmu sendiri — bukan data live kantor. Versi live tidak bisa dibagikan lewat tautan publik (aplikasi fullstack, datanya terikat akun Bos).</div>
+      <div class="hint" style="margin-top:18px">💡 <b>Standalone version.</b> This is a static template of a virtual office that runs in Muse. Task data here lives in your own browser's <b>localStorage</b> — it is not live office data. The live office cannot be shared through a public link (it is a fullstack app whose data is tied to the owner's account).</div>
     </section>
 
-    <!-- ============ PAPAN ============ -->
-    <section class="view" id="view-papan">
-      <h2>Papan Tugas</h2>
-      <p class="lead">Surat Tugas berjalan: <b>Antre → Dikerjakan → Menunggu Bos → Selesai</b>. Hanya Bos yang menandai Selesai. Seret kartu antar kolom, atau pakai menu pindah di tiap kartu (di HP). Perubahan tersimpan otomatis di peramban ini.</p>
+    <!-- ============ BOARD ============ -->
+    <section class="view" id="view-board">
+      <h2>Task Board</h2>
+      <p class="lead">Task letters in motion: <b>Backlog → In progress → Waiting for owner → Done</b>. Only the owner marks a task Done. Drag cards between columns, or use the move menu on each card (on mobile). Changes save automatically in this browser.</p>
       <div class="board-tools">
         <span id="board-summary"></span>
-        <button id="reset-btn" type="button">↺ Kembalikan 7 tugas awal</button>
+        <button id="reset-btn" type="button">↺ Reset example tasks</button>
       </div>
       <div class="board" id="board"></div>
-      <div class="hint" style="margin-top:18px">⚠️ <b>Aturan keras SATYA:</b> kantor tidak memproses isi kasus PPKPT — hanya administrasi umum. Pekerjaan kasus hanya di obrolan PPKPT.</div>
+      <div class="hint" style="margin-top:18px">⚠️ <b>Hard rule — COMPLIANCE:</b> the office never processes sensitive case content — general administration only. Case work happens only in the dedicated compliance chat.</div>
     </section>
 
-    <!-- ============ REKRUT ============ -->
-    <section class="view" id="view-rekrut">
-      <h2>Panel Rekrut</h2>
-      <p class="lead">Manajer kantor (Muse) boleh merekrut skill atau agen baru bila ada tugas yang butuh keahlian yang belum dimiliki kantor. Yang gratis langsung aktif dan dilaporkan ke Bos; yang berbayar tetap menunggu persetujuan Bos.</p>
+    <!-- ============ RECRUIT ============ -->
+    <section class="view" id="view-recruit">
+      <h2>Recruit Panel</h2>
+      <p class="lead">The office manager (Muse) may hire a new skill or agent when a task needs expertise the office does not have yet. Free hires go live immediately and are reported to the owner; paid hires wait for the owner's approval.</p>
       <div class="steps">
-        <div class="step"><div class="no">1</div><h3>Cari</h3><p>Manajer mencari skill yang cocok di katalog atau bank hire, lalu membaca SKILL.md-nya sampai paham.</p></div>
-        <div class="step"><div class="no">2</div><h3>Periksa</h3><p>Validasi frontmatter, pindai keamanan, dan pastikan tidak ada kode/instalasi yang dijalankan dari repo asal.</p></div>
-        <div class="step"><div class="no">3</div><h3>Pasang</h3><p>Skill disalin verbatim ke pustaka kantor beserta skill.yaml, INSTALL-NOTES.md, dan ATTRIBUTION.md.</p></div>
-        <div class="step"><div class="no">4</div><h3>Lapor</h3><p>Setiap hire dilaporkan ke Bos. Hire gratis langsung aktif; hire berbayar tetap berstatus kandidat.</p></div>
+        <div class="step"><div class="no">1</div><h3>Search</h3><p>The manager looks for a matching skill in the catalog or hiring bank, then reads its SKILL.md until it is understood.</p></div>
+        <div class="step"><div class="no">2</div><h3>Check</h3><p>Validate the frontmatter, scan for safety, and make sure no code or installer is run from the source repo.</p></div>
+        <div class="step"><div class="no">3</div><h3>Install</h3><p>The skill is copied verbatim into the office library together with its skill.yaml, INSTALL-NOTES.md, and ATTRIBUTION.md.</p></div>
+        <div class="step"><div class="no">4</div><h3>Report</h3><p>Every hire is reported to the owner. Free hires go live at once; paid hires stay candidates.</p></div>
       </div>
       <div id="skill-groups"></div>
-      <div class="hint">📚 <b>Sorotan repo ini:</b> 26 skill manajer di bawah diambil dari katalog <a href="https://github.com/aicodedecode/awesome-muse-skills">Awesome Muse Skills</a> (MIT, 2.648 skill) dan dipasang 10 November 2026. Salinan lengkap tiap skill ada di folder <code>skills/</code> repo ini.</div>
+      <div class="hint">📚 <b>Highlight of this repo:</b> the 26 manager skills below come from the <a href="https://github.com/aicodedecode/awesome-muse-skills">Awesome Muse Skills</a> catalog (MIT, 2,648 skills). A verbatim copy of each skill is in the <code>skills/</code> folder of this repo.</div>
     </section>
 
   </div>
 </main>
 <footer>
   <div class="wrap">
-    Kantor Virtual — pembangunan ulang mandiri (statis, tanpa server) dari kantor yang berjalan di Muse.
-    Lisensi repo: MIT. Skill-skill di folder <code>skills/</code> berlisensi MIT dari katalog Awesome Muse Skills.
-    Aturan kantor selengkapnya: <code>docs/brain.md</code>.
+    Virtual Office — a standalone template (static, no server) of an office that runs in Muse.
+    Repo license: MIT. The skills in the <code>skills/</code> folder are MIT-licensed from the Awesome Muse Skills catalog.
+    Office rules: <code>docs/brain.md</code>.
   </div>
 </footer>
 
 <script>
 /* ================= DATA ================= */
+/* Edit UNITS and SEED_TASKS to make this office your own.
+   Desks and example tasks below are generic placeholders. */
 const UNITS = [
-  {id:"bima",    name:"BIMA",    role:"Beasiswa & Pemagangan",   emoji:"🎓", color:"#2563eb"},
-  {id:"satya",   name:"SATYA",   role:"Satgas PPKPT",            emoji:"🛡️", color:"#dc2626"},
-  {id:"bimbing", name:"BIMBING", role:"Skripsi Dian & Izal",     emoji:"📚", color:"#7c3aed"},
-  {id:"ngajar",  name:"NGAJAR",  role:"Pengajaran Mobile & Web", emoji:"🧑‍🏫", color:"#059669"},
-  {id:"riset",   name:"RISET",   role:"Riset & Literatur",       emoji:"🔬", color:"#0891b2"},
-  {id:"kabar",   name:"KABAR",   role:"Konten & Media",          emoji:"🎬", color:"#ea580c"},
-  {id:"audit",   name:"AUDIT",   role:"Evaluasi & Data",         emoji:"📊", color:"#475569"}
+  {id:"grants",     name:"GRANTS",     role:"Grants & funding",      emoji:"💰", color:"#2563eb"},
+  {id:"compliance", name:"COMPLIANCE", role:"Rules & compliance",    emoji:"🛡️", color:"#dc2626"},
+  {id:"mentoring",  name:"MENTORING",  role:"Mentoring & supervision", emoji:"📚", color:"#7c3aed"},
+  {id:"teaching",   name:"TEACHING",   role:"Teaching & classes",    emoji:"🧑‍🏫", color:"#059669"},
+  {id:"research",   name:"RESEARCH",   role:"Research & reading",    emoji:"🔬", color:"#0891b2"},
+  {id:"content",    name:"CONTENT",    role:"Content & media",       emoji:"🎬", color:"#ea580c"},
+  {id:"review",     name:"REVIEW",     role:"Evaluation & data",     emoji:"📊", color:"#475569"}
 ];
 const STATUSES = [
-  {id:"antre",        label:"Antre"},
-  {id:"dikerjakan",   label:"Dikerjakan"},
-  {id:"menunggu_bos", label:"Menunggu Bos"},
-  {id:"selesai",      label:"Selesai"}
+  {id:"backlog",       label:"Backlog"},
+  {id:"in_progress",   label:"In progress"},
+  {id:"waiting_owner", label:"Waiting for owner"},
+  {id:"done",          label:"Done"}
 ];
 const SEED_TASKS = [
-  {id:1, unit:"bimbing", prio:"biasa", status:"antre",
-   title:"Bab II Dian: 5 konfirmasi lapangan sebelum menulis",
-   detail:"5 hal belum dikonfirmasi Dian sebelum Bab II ditulis. Draf pesan ada di obrolan skripsi — JANGAN kirim tanpa persetujuan Bos. Bab 1 KEPT sampai ada masukan dosbing."},
-  {id:2, unit:"satya", prio:"penting", status:"antre",
-   title:"Pantau putusan Rektor atas rekomendasi Satgas (tenggat 5 hari)",
-   detail:"Pleno 5 Nov 2026 memutuskan Pelanggaran Sedang; rekomendasi dan BA sudah didrafkan. Masih terbuka: konfirmasi tempat/jam/daftar hadir/suara, bentuk sanksi beasiswa, semester skorsing, pelaksana & tenggat, tanda tangan Ketua, dan putusan Rektor (Pasal 71 Permen 55/2024, maks 5 hari). Jangan cantumkan identitas pihak mana pun."},
-  {id:3, unit:"riset", prio:"biasa", status:"antre",
-   title:"Uji academic-research-skills untuk literatur Bab II Dian — DITUNDA Bos",
-   detail:"Ditunda Bos 10 Nov 2026. Utamakan konektor gratis Consensus/OpenAlex. Jangan mengarang sitasi/data."},
-  {id:4, unit:"bima", prio:"penting", status:"antre",
-   title:"LPJ keuangan beasiswa & pemagangan — kejar invoice Ilham",
-   detail:"Blocker: invoice dari Ilham (Keuangan UHN). Draf WA sudah dibuat 19 Okt. Jangan kirim apa pun tanpa persetujuan Bos."},
-  {id:5, unit:"ngajar", prio:"biasa", status:"menunggu_bos",
-   title:"Penilaian Tugas 2 Pemrograman Mobile — tunggu 17 mahasiswa mengumpulkan",
-   detail:"6/17 sudah mengumpulkan: Veris Wiguna, Daffa Faiz, Fajar Rahmadani, Khoirun Nisa, Muhammad Rifa'i Ramadhani, Puteri Cahaya Ramadhani. Penilaian HANYA setelah semua 17 mengumpulkan. Rubrik: logika 40 / navigasi 25 / kreativitas 20 / kerapian 15."},
-  {id:6, unit:"kabar", prio:"biasa", status:"menunggu_bos",
-   title:"Siklus usulan reels berikutnya — cari topik hangat baru",
-   detail:"Siklus tiap 3 hari, berikutnya ~11 Nov 21.20 WIB. Topik ditolak JANGAN ditawarkan ulang: Indosat, Oktober Hitam, Sumsub, paket reels ChatHPT, stimulus Rp31 T. Usulan saja, jangan generate tanpa persetujuan."},
-  {id:7, unit:"audit", prio:"mendesak", status:"antre",
-   title:"Persiapan Exit Meeting SPI — Rabu 11 Nov 2026",
-   detail:"Deck v2 diserahkan 6 Nov; kolom RKAT terkonfirmasi benar 7 Nov. Terbuka: penyebab Klinik 113,33% dan Magang Industri 10,58%. Deck JANGAN diubah sebelum poin disepakati di chat."}
+  {id:1, unit:"mentoring", prio:"normal", status:"backlog",
+   title:"Example: confirm the 5 field notes before drafting chapter 2",
+   detail:"Example task — replace it with your own work. A draft message is ready in the mentoring chat; do not send anything without the owner's approval."},
+  {id:2, unit:"compliance", prio:"important", status:"backlog",
+   title:"Example: track the decision deadline for the compliance recommendation",
+   detail:"Example task — replace it with your own work. Still open: confirm the venue, time, attendance list, vote count, sanction form, implementer, and deadline. Never include the identity of any party."},
+  {id:3, unit:"research", prio:"normal", status:"backlog",
+   title:"Example: test the research skills on the next literature review",
+   detail:"Example task — replace it with your own work. Prefer free literature connectors and save quota. Never fabricate citations or data."},
+  {id:4, unit:"grants", prio:"important", status:"backlog",
+   title:"Example: finish the financial report — chase the missing invoice",
+   detail:"Example task — replace it with your own work. Blocker: an invoice from Finance is still missing. A follow-up draft is ready. Do not send anything without the owner's approval."},
+  {id:5, unit:"teaching", prio:"normal", status:"waiting_owner",
+   title:"Example: grade the class assignment — wait until all students have submitted",
+   detail:"Example task — replace it with your own work. Example: 9 of 20 students have submitted so far. Grade ONLY after everyone has submitted. Example rubric: logic 40 / navigation 25 / creativity 20 / neatness 15."},
+  {id:6, unit:"content", prio:"normal", status:"waiting_owner",
+   title:"Example: plan the next content cycle — find a fresh trending topic",
+   detail:"Example task — replace it with your own work. Proposals only, every 3 days. Never generate or post without the owner's approval. Never re-offer a topic the owner already declined."},
+  {id:7, unit:"review", prio:"urgent", status:"backlog",
+   title:"Example: prepare for the quarterly performance review",
+   detail:"Example task — replace it with your own work. The draft deck is ready and the budget column is confirmed. Open: explain the two variances before the meeting. Do not change the deck before the points are agreed in chat."}
 ];
 const SKILL_GROUPS = [
-  {name:"Inti manajer (9)", desc:"Otak koordinasi kantor: mengelola agen, merencanakan kerja, dan mengingat keputusan.",
-   meja:"Dipakai manajer (Kadal Budug).",
+  {name:"Manager core (9)", desc:"The coordination brain of the office: managing agents, planning work, and remembering decisions.",
+   desk:"Used by the office manager (Muse).",
    skills:[
     ["agent-manager-skill","Manage fleets of local AI agents — spawn, supervise, route tasks, monitor progress, and shut down workers cleanly."],
     ["agent-management","Manage fleets of local AI agents: lifecycle, monitoring, task assignment, and resource control."],
@@ -227,8 +229,8 @@ const SKILL_GROUPS = [
     ["docs-search","Search documentation effectively: index docs, query precisely, and cite sources."],
     ["skill-creator","Design and author high-quality agent skills: scoping, frontmatter, structure, safety review."],
     ["skill-curator","Safely vet and import third-party agent skills: read-only clone, validate, safety-scan, dedupe."]]},
-  {name:"Operasional kantor (7)", desc:"Ritme kerja harian dan mingguan kantor: briefing, rapat, kalender, dan peninjauan.",
-   meja:"KABAR, NGAJAR, AUDIT, BIMA, manajer.",
+  {name:"Office operations (7)", desc:"The daily and weekly rhythm of the office: briefings, meetings, calendar, and reviews.",
+   desk:"CONTENT, TEACHING, REVIEW, GRANTS, manager.",
    skills:[
     ["daily-briefing","Build a morning briefing ritual: overnight priorities, today's calendar, top 3 focus items."],
     ["task-manager","Design a personal task management system that actually works: capture, clarify, organize, review."],
@@ -237,8 +239,8 @@ const SKILL_GROUPS = [
     ["calendar-guardian","Protect your time: time-blocking, buffer time, weekly calendar audits, defending focus."],
     ["scheduling-assistant","Streamline scheduling — booking flows, availability management, reminders."],
     ["weekly-review","Run a weekly review that keeps your whole system trusted: capture, clarify, check-ins."]]},
-  {name:"Dokumen (6)", desc:"Mengolah dokumen kantor: membaca, membuat, dan merancang berkas Word, PDF, formulir, dan deck.",
-   meja:"BIMBING, SATYA, BIMA, NGAJAR, AUDIT.",
+  {name:"Documents (6)", desc:"Working with office documents: reading, creating, and designing Word files, PDFs, forms, and decks.",
+   desk:"MENTORING, COMPLIANCE, GRANTS, TEACHING, REVIEW.",
    skills:[
     ["document-parser","Building robust document ingestion — chunking, metadata, multi-format pipelines."],
     ["docx-pro","Word document automation — generating, templating, and parsing .docx files."],
@@ -246,32 +248,32 @@ const SKILL_GROUPS = [
     ["presentation-designer","Design compelling slide decks with narrative structure and visual clarity."],
     ["forms-pro","Build excellent web forms: UX patterns, validation, accessibility, multi-step flows."],
     ["survey-designer","Design effective surveys — question writing, response scales, sampling, bias reduction."]]},
-  {name:"Riset & sitasi (1)", desc:"Menjaga sitasi tetap rapi dan bisa dilacak sumbernya.",
-   meja:"RISET, BIMBING.",
+  {name:"Research & citations (1)", desc:"Keeping citations tidy and traceable to their sources.",
+   desk:"RESEARCH, MENTORING.",
    skills:[
     ["citation-manager","Manage citations and references — collecting sources, organizing libraries, formatting bibliographies."]]},
-  {name:"Konten (3)", desc:"Strategi dan pengelolaan konten: dari rencana editorial sampai buletin.",
-   meja:"KABAR.",
+  {name:"Content (3)", desc:"Content strategy and management: from editorial plans to newsletters.",
+   desk:"CONTENT.",
    skills:[
     ["content-strategist","Design content strategies — audience research, pillar topics, editorial calendars."],
     ["social-media-manager","Plan, create, and manage social media presence — calendars, strategy, engagement."],
     ["newsletter-pro","Run professional newsletters — content strategy, writing, growth, deliverability."]]}
 ];
 
-/* ================= JAM WIB ================= */
+/* ================= LOCAL CLOCK ================= */
 function tick(){
   const now = new Date();
-  const t = new Intl.DateTimeFormat("id-ID",{timeZone:"Asia/Jakarta",hour:"2-digit",minute:"2-digit",second:"2-digit",hour12:false}).format(now);
-  const d = new Intl.DateTimeFormat("id-ID",{timeZone:"Asia/Jakarta",weekday:"long",day:"numeric",month:"long",year:"numeric"}).format(now);
-  document.getElementById("clock").textContent = t + " WIB";
-  document.getElementById("date").textContent = d;
+  const t = new Intl.DateTimeFormat("en-US",{hour:"2-digit",minute:"2-digit",second:"2-digit",hour12:false}).format(now);
+  const d = new Intl.DateTimeFormat("en-US",{weekday:"long",day:"numeric",month:"long",year:"numeric"}).format(now);
+  document.getElementById("clock").textContent = t;
+  document.getElementById("date").textContent = d + " · Local time";
 }
 tick(); setInterval(tick, 1000);
 
-/* ================= ROUTER HASH ================= */
+/* ================= HASH ROUTER ================= */
 function showView(){
-  let h = (location.hash || "#denah").replace("#","");
-  if(!["denah","papan","rekrut"].includes(h)) h = "denah";
+  let h = (location.hash || "#floor").replace("#","");
+  if(!["floor","board","recruit"].includes(h)) h = "floor";
   document.querySelectorAll(".view").forEach(v => v.classList.remove("active"));
   document.getElementById("view-"+h).classList.add("active");
   document.querySelectorAll("nav a").forEach(a => a.classList.remove("active"));
@@ -281,8 +283,8 @@ function showView(){
 window.addEventListener("hashchange", showView);
 showView();
 
-/* ================= TUGAS (localStorage) ================= */
-const LS_KEY = "kantor-virtual-tasks-v1";
+/* ================= TASKS (localStorage) ================= */
+const LS_KEY = "virtual-office-tasks-v1";
 function loadTasks(){
   try{
     const raw = localStorage.getItem(LS_KEY);
@@ -293,39 +295,39 @@ function loadTasks(){
 let tasks = loadTasks();
 function saveTasks(){ try{ localStorage.setItem(LS_KEY, JSON.stringify(tasks)); }catch(e){} }
 
-/* ================= DENAH ================= */
+/* ================= FLOOR PLAN ================= */
 function renderDesks(){
   const wrap = document.getElementById("desks");
   wrap.innerHTML = "";
   UNITS.forEach(u => {
-    const open = tasks.filter(t => t.unit === u.id && t.status !== "selesai").length;
-    const urgent = tasks.some(t => t.unit === u.id && t.prio === "mendesak" && t.status !== "selesai");
+    const open = tasks.filter(t => t.unit === u.id && t.status !== "done").length;
+    const urgent = tasks.some(t => t.unit === u.id && t.prio === "urgent" && t.status !== "done");
     const el = document.createElement("div");
     el.className = "desk";
     el.innerHTML =
       '<div class="avatar" style="background:'+u.color+'">'+u.emoji+'</div>'+
       '<h3>'+u.name+'</h3>'+
       '<p class="role">'+u.role+'</p>'+
-      '<span class="count'+(urgent?' hot':'')+'">'+(open===0?'Tidak ada tugas terbuka':open+' tugas terbuka')+'</span>';
-    el.addEventListener("click", () => { location.hash = "#papan"; });
+      '<span class="count'+(urgent?' hot':'')+'">'+(open===0?'No open tasks':open+' open task'+(open===1?'':'s'))+'</span>';
+    el.addEventListener("click", () => { location.hash = "#board"; });
     wrap.appendChild(el);
   });
   const meeting = document.createElement("div");
   meeting.className = "meeting";
-  meeting.innerHTML = "<h3>🪑 Ruang Rapat — Papan Tugas</h3><p>Semua Surat Tugas berkumpul di papan: Antre → Dikerjakan → Menunggu Bos → Selesai. Hasil kerja diantar ke chat utama Bos; tugas tidak pernah auto-Selesai.</p>";
+  meeting.innerHTML = "<h3>🪑 Meeting Room — Task Board</h3><p>Every task letter gathers on the board: Backlog → In progress → Waiting for owner → Done. Finished work is delivered to the owner's main chat; a task is never auto-Done.</p>";
   wrap.appendChild(meeting);
   document.getElementById("legend").innerHTML =
-    "<span>🕐 Jam WIB berjalan</span><span>📌 Papan diperbarui otomatis</span><span>🔴 Label merah = ada tugas mendesak</span><span>💾 Perubahan tersimpan di peramban ini</span>";
+    "<span>🕐 Live local clock</span><span>📌 Board updates automatically</span><span>🔴 Red label = an urgent task is open</span><span>💾 Changes save in this browser</span>";
 }
 
-/* ================= PAPAN ================= */
-function prioLabel(p){ return p==="mendesak" ? "Mendesak" : (p==="penting" ? "Penting" : "Biasa"); }
+/* ================= BOARD ================= */
+function prioLabel(p){ return p==="urgent" ? "Urgent" : (p==="important" ? "Important" : "Normal"); }
 function renderBoard(){
   const board = document.getElementById("board");
   board.innerHTML = "";
-  const done = tasks.filter(t => t.status==="selesai").length;
+  const done = tasks.filter(t => t.status==="done").length;
   document.getElementById("board-summary").textContent =
-    tasks.length + " tugas · " + done + " selesai · " + (tasks.length-done) + " masih berjalan";
+    tasks.length + " tasks · " + done + " done · " + (tasks.length-done) + " still open";
   STATUSES.forEach(st => {
     const col = document.createElement("div");
     col.className = "col";
@@ -340,12 +342,12 @@ function renderBoard(){
       card.dataset.id = t.id;
       card.style.borderLeftColor = u.color;
       let opts = STATUSES.map(s =>
-        '<option value="'+s.id+'"'+(s.id===t.status?' selected':'')+'>Pindah ke: '+s.label+'</option>').join("");
+        '<option value="'+s.id+'"'+(s.id===t.status?' selected':'')+'>Move to: '+s.label+'</option>').join("");
       card.innerHTML =
         '<span class="unit" style="background:'+u.color+'">'+u.name+'</span>' +
         '<span class="prio '+t.prio+'">'+prioLabel(t.prio)+'</span>' +
         '<h4>'+t.title+'</h4><p>'+t.detail+'</p>' +
-        '<select aria-label="Pindah kolom">'+opts+'</select>';
+        '<select aria-label="Move column">'+opts+'</select>';
       card.querySelector("select").addEventListener("change", ev => {
         t.status = ev.target.value; saveTasks(); renderAll();
       });
@@ -372,7 +374,7 @@ document.getElementById("reset-btn").addEventListener("click", () => {
   saveTasks(); renderAll();
 });
 
-/* ================= REKRUT ================= */
+/* ================= RECRUIT ================= */
 function renderSkills(){
   const wrap = document.getElementById("skill-groups");
   wrap.innerHTML = "";
@@ -381,7 +383,7 @@ function renderSkills(){
     div.className = "skill-group";
     let cards = g.skills.map(s =>
       '<div class="skill"><code>'+s[0]+'</code><p>'+s[1]+'</p></div>').join("");
-    div.innerHTML = '<h3>'+g.name+'</h3><p class="gdesc">'+g.desc+' <b>Meja:</b> '+g.meja+'</p><div class="skills">'+cards+'</div>';
+    div.innerHTML = '<h3>'+g.name+'</h3><p class="gdesc">'+g.desc+' <b>Desks:</b> '+g.desk+'</p><div class="skills">'+cards+'</div>';
     wrap.appendChild(div);
   });
 }
