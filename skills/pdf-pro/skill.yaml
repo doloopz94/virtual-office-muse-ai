@@ -1,0 +1,6 @@
+name: pdf-pro
+description: >-
+  Programmatic PDF work — creating, reading, merging, and filling PDFs — use when automating PDF generation or extraction.
+version: 1.0.0
+source: https://github.com/aicodedecode/awesome-muse-skills
+license: MIT

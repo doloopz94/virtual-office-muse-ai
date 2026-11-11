@@ -1,0 +1,6 @@
+name: planning
+description: >-
+  Plan multi-step AI agent work: decompose goals, sequence agents, define handoffs, and handle failure. Use when orchestrating agents through complex tasks that need structure before execution.
+version: 1.0.0
+source: https://github.com/aicodedecode/awesome-muse-skills
+license: MIT

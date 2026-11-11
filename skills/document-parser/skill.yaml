@@ -1,0 +1,6 @@
+name: document-parser
+description: >-
+  Building robust document ingestion — chunking, metadata, and multi-format pipelines for search and RAG.
+version: 1.0.0
+source: https://github.com/aicodedecode/awesome-muse-skills
+license: MIT

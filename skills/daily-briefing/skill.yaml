@@ -1,0 +1,6 @@
+name: daily-briefing
+description: >-
+  Build a morning briefing ritual with Muse: overnight priorities, today's calendar, weather-aware planning, and top 3 focus items as a concise chat summary.
+version: 1.0.0
+source: https://github.com/aicodedecode/awesome-muse-skills
+license: MIT

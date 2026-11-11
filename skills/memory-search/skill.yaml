@@ -1,0 +1,6 @@
+name: memory-search
+description: >-
+  Search agent memory effectively: recall prior decisions, facts, and context across conversations. Use when an agent needs to remember what was learned before.
+version: 1.0.0
+source: https://github.com/aicodedecode/awesome-muse-skills
+license: MIT

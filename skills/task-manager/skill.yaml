@@ -1,0 +1,6 @@
+name: task-manager
+description: >-
+  Design a personal task management system that actually works: capture, clarify, organize, review, and engage across any tool. Use when choosing or fixing how you manage tasks, or evaluating task apps.
+version: 1.0.0
+source: https://github.com/aicodedecode/awesome-muse-skills
+license: MIT

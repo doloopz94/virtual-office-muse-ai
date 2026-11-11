@@ -1,0 +1,6 @@
+name: agent-management
+description: >-
+  Manage fleets of local AI agents: lifecycle, monitoring, task assignment, and resource control. Use when running multiple CLI agents via an orchestrator like AI Maestro.
+version: 1.0.0
+source: https://github.com/aicodedecode/awesome-muse-skills
+license: MIT

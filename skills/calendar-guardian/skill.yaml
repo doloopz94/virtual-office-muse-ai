@@ -1,0 +1,6 @@
+name: calendar-guardian
+description: >-
+  Protect your time with Muse as calendar guardian: time-blocking, buffer time, declining gracefully, weekly calendar audits, and defending focus and personal time.
+version: 1.0.0
+source: https://github.com/aicodedecode/awesome-muse-skills
+license: MIT

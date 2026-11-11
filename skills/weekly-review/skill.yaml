@@ -1,0 +1,6 @@
+name: weekly-review
+description: >-
+  Run a weekly review that keeps your whole system trusted: capture, clarify, calendar, and project check-ins. Use when tasks slip, the system goes stale, or weeks feel reactive.
+version: 1.0.0
+source: https://github.com/aicodedecode/awesome-muse-skills
+license: MIT

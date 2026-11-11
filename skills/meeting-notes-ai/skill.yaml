@@ -1,0 +1,6 @@
+name: meeting-notes-ai
+description: >-
+  Use AI for meeting notes — automated summaries, action item extraction, and turning meetings into searchable knowledge.
+version: 1.0.0
+source: https://github.com/aicodedecode/awesome-muse-skills
+license: MIT

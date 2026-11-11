@@ -1,0 +1,6 @@
+name: docs-search
+description: >-
+  Search documentation effectively for agents: index docs, query precisely, and cite sources. Use when agents need accurate answers from documentation rather than guesses.
+version: 1.0.0
+source: https://github.com/aicodedecode/awesome-muse-skills
+license: MIT

@@ -1,0 +1,6 @@
+name: agent-messaging
+description: >-
+  Coordinate agents via messaging: send, receive, and manage inter-agent communication. Use when agents need to collaborate, hand off work, or notify each other.
+version: 1.0.0
+source: https://github.com/aicodedecode/awesome-muse-skills
+license: MIT

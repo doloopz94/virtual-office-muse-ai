@@ -1,0 +1,6 @@
+name: agent-orchestration
+description: >-
+  Orchestrate agents at runtime — task routing, scheduling, parallel execution, result aggregation, and supervision dashboards. Use when running agents as a managed fleet rather than one-off calls.
+version: 1.0.0
+source: https://github.com/aicodedecode/awesome-muse-skills
+license: MIT

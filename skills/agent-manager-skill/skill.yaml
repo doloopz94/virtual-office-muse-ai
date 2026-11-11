@@ -1,0 +1,6 @@
+name: agent-manager-skill
+description: >-
+  Manage fleets of local AI agents — spawn, supervise, route tasks, monitor progress, and shut down workers cleanly. Use when coordinating multiple agents on parallel workstreams.
+version: 1.0.0
+source: https://github.com/aicodedecode/awesome-muse-skills
+license: MIT

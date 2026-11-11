@@ -1,0 +1,6 @@
+name: skill-creator
+description: >-
+  Design and author high-quality agent skills: scoping, frontmatter, structure, safety review, and validation. Use when creating a new reusable skill from scratch or refining a draft into publishable form.
+version: 1.0.0
+source: https://github.com/aicodedecode/awesome-muse-skills
+license: MIT

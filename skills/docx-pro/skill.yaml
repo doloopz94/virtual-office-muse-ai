@@ -1,0 +1,6 @@
+name: docx-pro
+description: >-
+  Word document automation — generating, templating, and parsing .docx files — use when working with Word documents programmatically.
+version: 1.0.0
+source: https://github.com/aicodedecode/awesome-muse-skills
+license: MIT

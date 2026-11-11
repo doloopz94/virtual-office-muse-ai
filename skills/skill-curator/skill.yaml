@@ -1,0 +1,6 @@
+name: skill-curator
+description: >-
+  Safely vet and import third-party agent skills: read-only shallow clone, validate frontmatter, safety-scan every file, adapt tool-specific-isms, never execute repo code or installers, dedupe by content not just name. Use when adding skills from GitHub repos or community sources to a skills library.
+version: 1.0.0
+source: https://github.com/aicodedecode/awesome-muse-skills
+license: MIT

@@ -1,0 +1,6 @@
+name: citation-manager
+description: >-
+  Manage citations and references — collecting sources, organizing libraries, formatting bibliographies, and keeping reference integrity. Use when writing anything that cites sources.
+version: 1.0.0
+source: https://github.com/aicodedecode/awesome-muse-skills
+license: MIT

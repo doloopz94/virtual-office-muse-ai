@@ -1,0 +1,6 @@
+name: scheduling-assistant
+description: >-
+  Streamline scheduling — booking flows, availability management, reminders, and reducing no-shows.
+version: 1.0.0
+source: https://github.com/aicodedecode/awesome-muse-skills
+license: MIT
