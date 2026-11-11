@@ -9,7 +9,9 @@ Template kantor virtual yang dijalankan oleh **Muse** — manajer kantor AI Anda
 ## Screenshot
 
 ![Denah 2D](docs/screenshots/denah-2d.png)
-*Denah 2D — tujuh meja, satu karakter per meja, jam lokal berjalan.*
+*Denah 2D animasi — avatar Anda plus lima rekan berjalan antar meja, meja rapat, dan pojok kopi; jam lokal berjalan.*
+
+> **Demo satu pemain:** denah ini bermain seperti Gather.town untuk satu pemain — jalan dengan WASD, tombol panah, atau klik-di-lantai. Multiplayer live (orang lain berjalan bersama Anda secara real-time) butuh server dan di luar cakupan halaman statis ini.
 
 ![Papan tugas](docs/screenshots/papan-tugas.png)
 *Papan tugas — Antre → Dikerjakan → Menunggu Pemilik → Selesai.*

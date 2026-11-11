@@ -32,20 +32,51 @@
   .hint b{color:#4d3f08}
   h2{font-size:22px;margin:4px 0 6px}
   .lead{color:var(--muted);margin:0 0 18px;line-height:1.55}
-  /* ---- Floor plan ---- */
+  /* ---- Animated floor plan ---- */
   .floor{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:22px;box-shadow:0 2px 10px rgba(15,42,67,.06)}
   .floor-label{font-size:12px;font-weight:700;letter-spacing:.12em;color:var(--muted);text-transform:uppercase;margin-bottom:14px}
-  .desks{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
-  .desk{border:2px solid var(--line);border-radius:var(--radius);padding:16px 14px;text-align:center;background:#fffdf7;cursor:pointer;transition:transform .15s ease, box-shadow .15s ease}
-  .desk:hover{transform:translateY(-3px);box-shadow:0 8px 18px rgba(15,42,67,.12)}
-  .desk .avatar{width:74px;height:74px;border-radius:50%;margin:0 auto 10px;display:flex;align-items:center;justify-content:center;font-size:38px;color:#fff;box-shadow:inset 0 -6px 0 rgba(0,0,0,.15)}
-  .desk h3{margin:0 0 2px;font-size:17px}
-  .desk .role{font-size:13px;color:var(--muted);margin:0 0 10px}
-  .desk .count{display:inline-block;font-size:13px;font-weight:700;padding:4px 12px;border-radius:999px;background:#eef2f7;color:var(--navy)}
-  .desk .count.hot{background:#fde8e8;color:#b91c1c}
-  .meeting{grid-column:1 / -1;background:linear-gradient(135deg,#fdf6e3,#fbeecb);border:2px dashed #d9b64f;border-radius:var(--radius);padding:16px;text-align:center}
-  .meeting h3{margin:0 0 4px;font-size:17px}
-  .meeting p{margin:0;color:var(--muted);font-size:14px;line-height:1.5}
+  .map-controls{display:flex;gap:10px;align-items:center;margin-bottom:12px;flex-wrap:wrap}
+  .map-controls button{border:1px solid var(--line);background:#fff;border-radius:9px;padding:8px 14px;font-size:13.5px;font-weight:600;cursor:pointer}
+  .map-controls button:hover{background:#f0ece1}
+  .map-controls span{font-size:13.5px;color:var(--muted)}
+  .map{position:relative;width:100%;aspect-ratio:16/9;border:12px solid #8a6f4d;border-radius:10px;overflow:hidden;background-color:#e8dcc3;background-image:repeating-linear-gradient(0deg,rgba(0,0,0,.025) 0 2px,transparent 2px 44px),repeating-linear-gradient(90deg,rgba(0,0,0,.025) 0 2px,transparent 2px 44px)}
+  .rug{position:absolute;border-radius:14px;background:rgba(37,99,235,.10);z-index:1}
+  .door{position:absolute;left:50%;bottom:0;transform:translateX(-50%);width:12%;height:20px;background:#f7ead0;border:2px solid #8a6f4d;border-bottom:none;border-radius:8px 8px 0 0;text-align:center;font-size:10px;font-weight:700;color:#6b5510;line-height:19px;z-index:5;white-space:nowrap}
+  .station{position:absolute;width:13.5%;text-align:center;cursor:pointer;z-index:3}
+  .station.flip{display:flex;flex-direction:column-reverse}
+  .station .s-desk{position:relative;height:34px;border-radius:8px;background:#a9805a;border:2px solid #8a6f4d;box-shadow:0 3px 0 rgba(0,0,0,.12)}
+  .station .s-desk::after{content:"💻";position:absolute;left:50%;top:-17px;transform:translateX(-50%);font-size:18px}
+  .station .s-chair{width:26px;height:12px;margin:4px auto;border-radius:6px;background:#6b7280}
+  .station .s-label{display:inline-block;margin-top:5px;background:#fff;border:1px solid var(--line);border-radius:8px;padding:3px 8px;font-size:12px;font-weight:700;line-height:1.35;box-shadow:0 1px 3px rgba(15,42,67,.12)}
+  .station .s-label small{display:block;font-weight:400;color:var(--muted);font-size:11px}
+  .station .s-dot{display:none;width:8px;height:8px;border-radius:50%;background:#22c55e;margin-right:4px;vertical-align:1px}
+  .station.occupied .s-dot{display:inline-block;animation:pulse 1.6s infinite}
+  @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(34,197,94,.55)}70%{box-shadow:0 0 0 8px rgba(34,197,94,0)}100%{box-shadow:0 0 0 0 rgba(34,197,94,0)}}
+  .station:hover .s-label{outline:2px solid var(--navy)}
+  .meeting-table{position:absolute;left:38%;top:38%;width:24%;height:20%;background:#c89b6d;border:3px solid #8a6f4d;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:26px;cursor:pointer;z-index:2;box-shadow:0 3px 0 rgba(0,0,0,.12)}
+  .meeting-table span{position:absolute;bottom:-19px;left:50%;transform:translateX(-50%);font-size:12px;font-weight:700;color:#5b4326;white-space:nowrap}
+  .m-chair{position:absolute;width:22px;height:22px;border-radius:50%;background:#6b7280;border:2px solid #4b5563;z-index:2}
+  .coffee{position:absolute;right:1.5%;top:42%;width:9%;text-align:center;cursor:pointer;z-index:3}
+  .coffee .c-counter{height:30px;border-radius:8px;background:#7c4a21;border:2px solid #5b3413;display:flex;align-items:center;justify-content:center;font-size:18px}
+  .coffee .c-label{display:inline-block;margin-top:4px;background:#fff;border:1px solid var(--line);border-radius:8px;padding:3px 8px;font-size:12px;font-weight:700;white-space:nowrap}
+  .coffee:hover .c-label{outline:2px solid var(--navy)}
+  .plant{position:absolute;font-size:30px;line-height:1;z-index:2}
+  .chibi{position:absolute;width:44px;transform:translate(-50%,-100%);z-index:6;cursor:pointer;text-align:center}
+  .chibi .c-shadow{position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:30px;height:7px;border-radius:50%;background:rgba(0,0,0,.18)}
+  .chibi .c-face{width:34px;height:34px;margin:0 auto;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:21px;color:#fff;box-shadow:inset 0 -4px 0 rgba(0,0,0,.18);border:2px solid rgba(255,255,255,.7)}
+  .chibi .c-body{width:26px;height:12px;margin:-2px auto 0;border-radius:6px;filter:brightness(.82)}
+  .chibi .c-name{font-size:11px;font-weight:700;background:rgba(255,255,255,.92);border:1px solid var(--line);border-radius:999px;padding:1px 7px;margin-top:2px;display:inline-block;white-space:nowrap}
+  .chibi .c-bubble{position:absolute;top:-6px;right:-4px;font-size:17px;display:none}
+  .chibi.coffee-break .c-bubble{display:block}
+  .map-tip{position:absolute;z-index:9;background:#1c2733;color:#fff;font-size:12.5px;line-height:1.45;border-radius:9px;padding:8px 11px;max-width:230px;transform:translate(-50%,-115%);display:none;pointer-events:none;box-shadow:0 4px 14px rgba(0,0,0,.25)}
+  .map-tip b{color:#ffd166}
+  .chibi.player .c-face{border:3px solid #fff;box-shadow:0 0 0 3px #f59e0b,inset 0 -4px 0 rgba(0,0,0,.18)}
+  .chibi.player .c-name{background:#f59e0b;color:#fff;border-color:#d97706}
+  .player-bubble{position:absolute;z-index:9;background:#1c2733;color:#fff;font-size:12.5px;line-height:1.45;border-radius:9px;padding:7px 11px;max-width:250px;transform:translate(-50%,-135%);display:none;pointer-events:none;box-shadow:0 4px 14px rgba(0,0,0,.25);white-space:nowrap}
+  .player-bubble b{color:#ffd166}
+  .activity{margin-top:14px;background:#fff;border:1px solid var(--line);border-radius:12px;padding:12px 16px;font-size:13.5px;line-height:1.6}
+  .activity .a-title{font-weight:700;margin-bottom:4px}
+  .activity ul{margin:0;padding-left:18px;color:#3c4a58}
   .legend{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
   .legend span{font-size:12.5px;background:#eef2f7;border-radius:999px;padding:5px 11px}
   /* ---- Board ---- */
@@ -86,7 +117,6 @@
   footer{border-top:1px solid var(--line);padding:18px 0 30px;color:var(--muted);font-size:13px;line-height:1.6}
   footer a{color:var(--navy)}
   @media (max-width:900px){
-    .desks{grid-template-columns:repeat(2,1fr)}
     .board{grid-template-columns:1fr 1fr}
     .steps{grid-template-columns:1fr 1fr}
     .skills{grid-template-columns:1fr 1fr}
@@ -94,12 +124,18 @@
     .clock .time{font-size:24px}
   }
   @media (max-width:560px){
-    .desks{grid-template-columns:1fr}
     .board{grid-template-columns:1fr}
     .steps{grid-template-columns:1fr}
     .skills{grid-template-columns:1fr}
     .clock{text-align:left}
     nav a{font-size:14px}
+    .station .s-label{font-size:10px;padding:2px 5px}
+    .station .s-label small{display:none}
+    .station .s-desk{height:26px}
+    .map{border-width:8px}
+    .chibi{width:36px}
+    .chibi .c-face{width:28px;height:28px;font-size:17px}
+    .plant{font-size:22px}
   }
 </style>
 </head>
@@ -129,13 +165,18 @@
     <!-- ============ FLOOR PLAN ============ -->
     <section class="view" id="view-floor">
       <h2>Office Floor Plan</h2>
-      <p class="lead">Seven desks, one work unit each. Click a desk to see its tasks on the board.</p>
+      <p class="lead">A living floor plan, Gather.town-style: you walk around with <b>WASD / arrow keys</b>, or <b>click on the floor</b> to walk there. Five colleagues wander between the seven desks, the meeting table, and the coffee corner. Click a desk to send the nearest walker there — or click a walker to see what they are doing. Walk up to a desk to see its open tasks.</p>
       <div class="floor">
         <div class="floor-label">Virtual Office floor · Example layout — rename the desks to fit your own work</div>
-        <div class="desks" id="desks"></div>
+        <div class="map-controls">
+          <button id="pause-btn" type="button">⏸ Pause walkers</button>
+          <span id="walker-count"></span>
+        </div>
+        <div class="map" id="map"></div>
         <div class="legend" id="legend"></div>
+        <div class="activity"><div class="a-title">🗨️ Office activity</div><ul id="activity-list"><li>Walkers are on their way…</li></ul></div>
       </div>
-      <div class="hint" style="margin-top:18px">💡 <b>Standalone version.</b> This is a static template of a virtual office that runs in Muse. Task data here lives in your own browser's <b>localStorage</b> — it is not live office data. The live office cannot be shared through a public link (it is a fullstack app whose data is tied to the owner's account).</div>
+      <div class="hint" style="margin-top:18px">💡 <b>Standalone version.</b> This is a static template of a virtual office that runs in Muse — now with an animated floor plan. Task data here lives in your own browser's <b>localStorage</b> — it is not live office data. The live office cannot be shared through a public link (it is a fullstack app whose data is tied to the owner's account).</div>
     </section>
 
     <!-- ============ BOARD ============ -->
@@ -295,30 +336,547 @@ function loadTasks(){
 let tasks = loadTasks();
 function saveTasks(){ try{ localStorage.setItem(LS_KEY, JSON.stringify(tasks)); }catch(e){} }
 
-/* ================= FLOOR PLAN ================= */
-function renderDesks(){
-  const wrap = document.getElementById("desks");
-  wrap.innerHTML = "";
-  UNITS.forEach(u => {
-    const open = tasks.filter(t => t.unit === u.id && t.status !== "done").length;
-    const urgent = tasks.some(t => t.unit === u.id && t.prio === "urgent" && t.status !== "done");
-    const el = document.createElement("div");
-    el.className = "desk";
-    el.innerHTML =
-      '<div class="avatar" style="background:'+u.color+'">'+u.emoji+'</div>'+
-      '<h3>'+u.name+'</h3>'+
-      '<p class="role">'+u.role+'</p>'+
-      '<span class="count'+(urgent?' hot':'')+'">'+(open===0?'No open tasks':open+' open task'+(open===1?'':'s'))+'</span>';
-    el.addEventListener("click", () => { location.hash = "#board"; });
-    wrap.appendChild(el);
-  });
-  const meeting = document.createElement("div");
-  meeting.className = "meeting";
-  meeting.innerHTML = "<h3>🪑 Meeting Room — Task Board</h3><p>Every task letter gathers on the board: Backlog → In progress → Waiting for owner → Done. Finished work is delivered to the owner's main chat; a task is never auto-Done.</p>";
-  wrap.appendChild(meeting);
-  document.getElementById("legend").innerHTML =
-    "<span>🕐 Live local clock</span><span>📌 Board updates automatically</span><span>🔴 Red label = an urgent task is open</span><span>💾 Changes save in this browser</span>";
+/* ================= ANIMATED FLOOR PLAN ================= */
+/* A Gather.town-style 2D office: desk stations around the room, a
+   meeting table in the middle, a coffee corner, and five walkers who
+   stroll between waypoints. Positions are fractions of the map size,
+   so the map stays responsive. Walk speed is ~60 px per second.
+   Walkers never cross furniture: they travel on a small waypoint
+   graph (two clear lanes plus a link to every stand point) and the
+   path between two stands is found with BFS. */
+const MAP_NODES = {
+  U1:{x:0.10,y:0.30}, U2:{x:0.50,y:0.30}, U3:{x:0.90,y:0.30},
+  L1:{x:0.10,y:0.68}, L2:{x:0.50,y:0.68}, L3:{x:0.90,y:0.68},
+  grants:{x:0.105,y:0.245,label:"the GRANTS desk",station:"grants"},
+  compliance:{x:0.335,y:0.245,label:"the COMPLIANCE desk",station:"compliance"},
+  mentoring:{x:0.565,y:0.245,label:"the MENTORING desk",station:"mentoring"},
+  teaching:{x:0.795,y:0.245,label:"the TEACHING desk",station:"teaching"},
+  research:{x:0.105,y:0.735,label:"the RESEARCH desk",station:"research"},
+  content:{x:0.335,y:0.735,label:"the CONTENT desk",station:"content"},
+  review:{x:0.795,y:0.735,label:"the REVIEW desk",station:"review"},
+  meetingN:{x:0.44,y:0.315,label:"the meeting table"},
+  meetingS:{x:0.56,y:0.655,label:"the meeting table"},
+  coffee:{x:0.855,y:0.50,label:"the coffee corner"},
+  door:{x:0.565,y:0.86,label:"the entrance"},
+  lounge:{x:0.90,y:0.245,label:"the lounge"},
+  hall:{x:0.14,y:0.50,label:"the hallway"}
+};
+const MAP_EDGES = {
+  U1:["U2","L1","hall"], U2:["U1","U3"], U3:["U2","L3","coffee","lounge"],
+  L1:["L2","U1","hall"], L2:["L1","L3"], L3:["L2","U3","coffee"],
+  grants:["U1"], compliance:["U2"], mentoring:["U2"], teaching:["U3"],
+  research:["L1"], content:["L2"], review:["L3"],
+  meetingN:["U2"], meetingS:["L2"],
+  coffee:["U3","L3"], door:["L2"], lounge:["U3"], hall:["U1","L1"]
+};
+const STAND_IDS = ["grants","compliance","mentoring","teaching","research","content","review","meetingN","meetingS","coffee","door","lounge","hall"];
+const WALKERS = [
+  {name:"Alex", face:"🙂", color:"#2563eb"},
+  {name:"Maya", face:"😊", color:"#7c3aed"},
+  {name:"Ben",  face:"😄", color:"#0891b2"},
+  {name:"Sara", face:"😎", color:"#ea580c"},
+  {name:"Kim",  face:"🤓", color:"#059669"}
+];
+const WALK_SPEED = 60; // px per second
+let mapPaused = false;
+let walkers = [];
+let tipTimer = null;
+
+function findPath(fromId, toId){
+  if(fromId === toId) return [toId];
+  const prev = {};
+  const seen = new Set([fromId]);
+  const queue = [fromId];
+  while(queue.length){
+    const cur = queue.shift();
+    for(const nb of (MAP_EDGES[cur] || [])){
+      if(seen.has(nb)) continue;
+      seen.add(nb);
+      prev[nb] = cur;
+      if(nb === toId){
+        const path = [toId];
+        let p = toId;
+        while(p !== fromId){ p = prev[p]; path.unshift(p); }
+        return path;
+      }
+      queue.push(nb);
+    }
+  }
+  return [toId];
 }
+function nearestNodeId(x, y){
+  let best = null, bestD = Infinity;
+  for(const id of Object.keys(MAP_NODES)){
+    const n = MAP_NODES[id];
+    const d = (n.x - x) * (n.x - x) + (n.y - y) * (n.y - y);
+    if(d < bestD){ bestD = d; best = id; }
+  }
+  return best;
+}
+function activityVerb(nodeId){
+  if(nodeId === "coffee") return "is having coffee at";
+  if(nodeId === "meetingN" || nodeId === "meetingS") return "joined the meeting at";
+  if(nodeId === "door") return "is waiting at";
+  if(nodeId === "lounge" || nodeId === "hall") return "is taking a break at";
+  return "arrived at";
+}
+function logActivity(text){
+  const list = document.getElementById("activity-list");
+  if(!list) return;
+  const t = new Intl.DateTimeFormat("en-US",{hour:"2-digit",minute:"2-digit",hour12:false}).format(new Date());
+  const li = document.createElement("li");
+  li.textContent = t + " — " + text;
+  list.prepend(li);
+  while(list.children.length > 3) list.removeChild(list.lastChild);
+}
+function updateOccupied(){
+  document.querySelectorAll(".station").forEach(st => {
+    const occupied = walkers.some(w =>
+      w.state === "idle" && w.node && MAP_NODES[w.node] && MAP_NODES[w.node].station === st.dataset.unit);
+    st.classList.toggle("occupied", occupied);
+  });
+}
+function updateStationCounts(){
+  document.querySelectorAll(".station").forEach(st => {
+    const u = UNITS.find(x => x.id === st.dataset.unit);
+    if(!u) return;
+    const open = tasks.filter(t => t.unit === u.id && t.status !== "done").length;
+    const c = st.querySelector(".s-count");
+    if(c) c.textContent = open === 0 ? "no open tasks" : open + " open task" + (open === 1 ? "" : "s");
+  });
+  const wc = document.getElementById("walker-count");
+  if(wc) wc.textContent = walkers.length + " walkers + you on the floor · Move with WASD / arrow keys, or click the floor";
+}
+function startWalk(w, destId){
+  const from = w.node || nearestNodeId(w.x, w.y);
+  const path = findPath(from, destId);
+  if(path[0] === from) path.shift();
+  w.path = path;
+  w.pathIdx = 0;
+  w.dest = destId;
+  w.state = "walk";
+  w.node = null;
+  w.el.classList.remove("coffee-break");
+  updateOccupied();
+}
+function pickNextDestination(w){
+  let dest = w.node;
+  while(dest === w.node) dest = STAND_IDS[Math.floor(Math.random() * STAND_IDS.length)];
+  startWalk(w, dest);
+}
+function arriveWalker(w){
+  w.state = "idle";
+  w.idleUntil = performance.now() + 2000 + Math.random() * 3000;
+  w.node = w.path.length ? w.path[w.path.length - 1] : w.dest;
+  w.path = [];
+  w.pathIdx = 0;
+  w.el.classList.toggle("coffee-break", w.node === "coffee");
+  logActivity(w.name + " " + activityVerb(w.node) + " " + MAP_NODES[w.node].label + ".");
+  updateOccupied();
+}
+function stepWalker(w, dt, rect){
+  if(w.pathIdx >= w.path.length){ arriveWalker(w); return; }
+  const target = MAP_NODES[w.path[w.pathIdx]];
+  const dxPx = (target.x - w.x) * rect.width;
+  const dyPx = (target.y - w.y) * rect.height;
+  const dist = Math.hypot(dxPx, dyPx);
+  const step = WALK_SPEED * dt;
+  if(dist <= Math.max(step, 1.5)){
+    w.x = target.x;
+    w.y = target.y;
+    w.pathIdx++;
+    if(w.pathIdx >= w.path.length) arriveWalker(w);
+    return;
+  }
+  if(dxPx > 0.5) w.dir = 1;
+  else if(dxPx < -0.5) w.dir = -1;
+  const ratio = step / dist;
+  w.x += (target.x - w.x) * ratio;
+  w.y += (target.y - w.y) * ratio;
+  w.phase += dt * 9;
+}
+function updateBob(w, now){
+  let bobY, rot;
+  if(w.state === "walk"){
+    bobY = -3.5 * Math.abs(Math.sin(w.phase));
+    rot = 3.5 * Math.sin(w.phase);
+  } else {
+    bobY = -1.2 * Math.sin(now * 0.0016 + w.phase);
+    rot = 0;
+  }
+  w.bobEl.style.transform =
+    "translateY(" + bobY.toFixed(1) + "px) rotate(" + rot.toFixed(1) + "deg) scaleX(" + w.dir + ")";
+}
+/* ================= PLAYER AVATAR (Gather.town-style) ================= */
+/* One avatar controlled by the visitor: WASD / arrow keys, or click on
+   the floor to walk there. Collision is simple axis-separated bounding
+   boxes: the player slides along walls and furniture instead of
+   passing through them. */
+const PLAYER_SPEED = 90; // px per second
+const SOLIDS = [
+  // top-row desks (desk + chair zone)
+  {x0:0.035, y0:0.04, x1:0.18, y1:0.20},
+  {x0:0.265, y0:0.04, x1:0.41, y1:0.20},
+  {x0:0.495, y0:0.04, x1:0.64, y1:0.20},
+  {x0:0.725, y0:0.04, x1:0.87, y1:0.20},
+  // bottom-row desks
+  {x0:0.035, y0:0.74, x1:0.18, y1:0.90},
+  {x0:0.265, y0:0.74, x1:0.41, y1:0.90},
+  {x0:0.725, y0:0.74, x1:0.87, y1:0.90},
+  // meeting table (rectangle around the oval)
+  {x0:0.37, y0:0.37, x1:0.63, y1:0.59},
+  // coffee counter
+  {x0:0.88, y0:0.41, x1:0.985, y1:0.47},
+  // plants
+  {x0:0.005, y0:0.43, x1:0.045, y1:0.49},
+  {x0:0.885, y0:0.04, x1:0.925, y1:0.10}
+];
+function isWalkable(x, y){
+  if(x < 0.02 || x > 0.98 || y < 0.025 || y > 0.975) return false;
+  for(const s of SOLIDS){
+    if(x > s.x0 && x < s.x1 && y > s.y0 && y < s.y1) return false;
+  }
+  return true;
+}
+function clampWalkable(x, y){
+  x = Math.min(0.98, Math.max(0.02, x));
+  y = Math.min(0.975, Math.max(0.025, y));
+  for(const s of SOLIDS){
+    if(x > s.x0 && x < s.x1 && y > s.y0 && y < s.y1){
+      const dl = x - s.x0, dr = s.x1 - x, dt = y - s.y0, db = s.y1 - y;
+      const m = Math.min(dl, dr, dt, db);
+      if(m === dl) x = s.x0 - 0.005;
+      else if(m === dr) x = s.x1 + 0.005;
+      else if(m === dt) y = s.y0 - 0.005;
+      else y = s.y1 + 0.005;
+    }
+  }
+  return {x: Math.min(0.98, Math.max(0.02, x)), y: Math.min(0.975, Math.max(0.025, y))};
+}
+const PLAYER = {
+  name:"You", face:"🧑‍💻", color:"#f59e0b",
+  x: MAP_NODES.door.x, y: MAP_NODES.door.y,
+  dir: 1, phase: 0, state: "idle", stuckFrames: 0,
+  keys: new Set(), clickPath: [], clickIdx: 0, clickTarget: null,
+  el: null, bobEl: null
+};
+function tryMovePlayer(dx, dy){
+  const ox = PLAYER.x, oy = PLAYER.y;
+  if(isWalkable(PLAYER.x + dx, PLAYER.y)) PLAYER.x += dx;
+  if(isWalkable(PLAYER.x, PLAYER.y + dy)) PLAYER.y += dy;
+  return Math.hypot(PLAYER.x - ox, PLAYER.y - oy);
+}
+function playerClickMove(tx, ty){
+  const p = clampWalkable(tx, ty);
+  const from = nearestNodeId(PLAYER.x, PLAYER.y);
+  const to = nearestNodeId(p.x, p.y);
+  const path = findPath(from, to);
+  if(path[0] === from) path.shift();
+  PLAYER.clickPath = path;
+  PLAYER.clickIdx = 0;
+  PLAYER.clickTarget = p;
+  PLAYER.state = "walk";
+  PLAYER.keys.clear();
+}
+function stepPlayerToward(tx, ty, dt, rect){
+  const dxPx = (tx - PLAYER.x) * rect.width;
+  const dyPx = (ty - PLAYER.y) * rect.height;
+  const dist = Math.hypot(dxPx, dyPx);
+  const step = PLAYER_SPEED * dt;
+  if(dist <= Math.max(step, 1.5)){
+    PLAYER.x = tx;
+    PLAYER.y = ty;
+    PLAYER.phase += dt * 9;
+    return {arrived: true, progress: true};
+  }
+  if(dxPx > 0.5) PLAYER.dir = 1;
+  else if(dxPx < -0.5) PLAYER.dir = -1;
+  const ratio = step / dist;
+  const moved = tryMovePlayer((tx - PLAYER.x) * ratio, (ty - PLAYER.y) * ratio);
+  if(moved > 0.00001) PLAYER.phase += dt * 9;
+  return {arrived: false, progress: moved > 0.00001};
+}
+/* A click-to-move route is only abandoned after ~30 frames with no
+   progress: a single near-zero-dt frame must not cancel the walk. */
+function noteStuck(progress){
+  if(progress){ PLAYER.stuckFrames = 0; return false; }
+  PLAYER.stuckFrames = (PLAYER.stuckFrames || 0) + 1;
+  if(PLAYER.stuckFrames > 30){ PLAYER.stuckFrames = 0; return true; }
+  return false;
+}
+function stepPlayer(dt, rect){
+  let kx = 0, ky = 0;
+  if(PLAYER.keys.has("KeyW") || PLAYER.keys.has("ArrowUp")) ky -= 1;
+  if(PLAYER.keys.has("KeyS") || PLAYER.keys.has("ArrowDown")) ky += 1;
+  if(PLAYER.keys.has("KeyA") || PLAYER.keys.has("ArrowLeft")) kx -= 1;
+  if(PLAYER.keys.has("KeyD") || PLAYER.keys.has("ArrowRight")) kx += 1;
+  if(kx || ky){
+    PLAYER.clickPath = [];
+    PLAYER.clickIdx = 0;
+    PLAYER.clickTarget = null;
+    const len = Math.hypot(kx, ky);
+    const sx = (kx / len) * PLAYER_SPEED * dt / rect.width;
+    const sy = (ky / len) * PLAYER_SPEED * dt / rect.height;
+    tryMovePlayer(sx, sy);
+    PLAYER.state = "walk";
+    if(kx > 0) PLAYER.dir = 1;
+    else if(kx < 0) PLAYER.dir = -1;
+    PLAYER.phase += dt * 9;
+    return;
+  }
+  if(PLAYER.clickPath.length && PLAYER.clickIdx < PLAYER.clickPath.length){
+    const target = MAP_NODES[PLAYER.clickPath[PLAYER.clickIdx]];
+    const moved = stepPlayerToward(target.x, target.y, dt, rect);
+    if(moved.arrived){ PLAYER.clickIdx++; PLAYER.stuckFrames = 0; }
+    else if(noteStuck(moved.progress)){ PLAYER.clickPath = []; PLAYER.clickIdx = 0; PLAYER.clickTarget = null; }
+    PLAYER.state = "walk";
+    return;
+  }
+  if(PLAYER.clickTarget){
+    const moved = stepPlayerToward(PLAYER.clickTarget.x, PLAYER.clickTarget.y, dt, rect);
+    if(moved.arrived) PLAYER.clickTarget = null;
+    else if(noteStuck(moved.progress)) PLAYER.clickTarget = null;
+    PLAYER.state = "walk";
+    return;
+  }
+  PLAYER.state = "idle";
+}
+function updatePlayerBubble(rect){
+  const b = document.getElementById("player-bubble");
+  if(!b) return;
+  let best = null, bestD = 130;
+  for(const u of UNITS){
+    const n = MAP_NODES[u.id];
+    const d = Math.hypot((PLAYER.x - n.x) * rect.width, (PLAYER.y - n.y) * rect.height);
+    if(d < bestD){ bestD = d; best = u; }
+  }
+  const tableD = Math.hypot((PLAYER.x - 0.5) * rect.width, (PLAYER.y - 0.48) * rect.height);
+  let text = null;
+  if(tableD < 170 && (!best || tableD < bestD + 40)){
+    const here = walkers
+      .filter(w => w.state === "idle" && (w.node === "meetingN" || w.node === "meetingS"))
+      .map(w => w.name);
+    text = "<b>Meeting table</b> — " + (here.length
+      ? here.join(", ") + (here.length === 1 ? " is" : " are") + " here"
+      : "nobody here yet");
+  } else if(best){
+    const open = tasks.filter(t => t.unit === best.id && t.status !== "done").length;
+    text = "<b>" + best.name + "</b> · " + open + " open task" + (open === 1 ? "" : "s");
+  }
+  if(text){
+    b.innerHTML = text;
+    b.style.left = (PLAYER.x * 100) + "%";
+    b.style.top = (PLAYER.y * 100) + "%";
+    b.style.display = "block";
+  } else {
+    b.style.display = "none";
+  }
+}
+function sendNearestWalker(nodeId){
+  const map = document.getElementById("map");
+  const rect = map.getBoundingClientRect();
+  if(rect.width < 10) return;
+  const target = MAP_NODES[nodeId];
+  let best = null, bestD = Infinity;
+  walkers.forEach(w => {
+    const d = Math.hypot((w.x - target.x) * rect.width, (w.y - target.y) * rect.height);
+    if(d < bestD){ bestD = d; best = w; }
+  });
+  if(!best) return;
+  startWalk(best, nodeId);
+  logActivity(best.name + " is heading to " + target.label + ".");
+}
+function showWalkerTip(w){
+  const tip = document.getElementById("map-tip");
+  if(!tip) return;
+  let status;
+  if(w.state === "walk"){
+    status = "heading to " + (w.dest && MAP_NODES[w.dest] ? MAP_NODES[w.dest].label : "somewhere");
+  } else if(w.node === "coffee"){
+    status = "having coffee at the coffee corner";
+  } else if(w.node){
+    status = activityVerb(w.node) + " " + MAP_NODES[w.node].label;
+  } else {
+    status = "walking around the office";
+  }
+  tip.innerHTML = "<b>" + w.name + "</b> — " + status + ".";
+  tip.style.left = ((w.x + (w.ox || 0)) * 100) + "%";
+  tip.style.top = ((w.y + (w.oy || 0)) * 100) + "%";
+  tip.style.transform = w.y > 0.22 ? "translate(-50%,-115%)" : "translate(-50%,30%)";
+  tip.style.display = "block";
+  clearTimeout(tipTimer);
+  tipTimer = setTimeout(() => { tip.style.display = "none"; }, 3500);
+}
+function buildMap(){
+  const map = document.getElementById("map");
+  map.innerHTML = "";
+  // rugs
+  [["8%","33%","15%","11%"],["77%","60%","14%","11%"]].forEach(r => {
+    const d = document.createElement("div");
+    d.className = "rug";
+    d.style.left = r[0]; d.style.top = r[1]; d.style.width = r[2]; d.style.height = r[3];
+    map.appendChild(d);
+  });
+  // desk stations around the room
+  const topRow = ["grants","compliance","mentoring","teaching"];
+  const colOf = {grants:4, compliance:27, mentoring:50, teaching:73, research:4, content:27, review:73};
+  UNITS.forEach(u => {
+    const top = topRow.includes(u.id);
+    const el = document.createElement("div");
+    el.className = "station" + (top ? "" : " flip");
+    el.style.left = colOf[u.id] + "%";
+    el.style.top = (top ? 5 : 76) + "%";
+    el.dataset.unit = u.id;
+    el.innerHTML =
+      '<div class="s-desk"></div><div class="s-chair"></div>' +
+      '<div class="s-label"><span class="s-dot"></span>' + u.name +
+      '<small>' + u.role + ' · <span class="s-count"></span></small></div>';
+    el.addEventListener("click", ev => { ev.stopPropagation(); sendNearestWalker(u.id); });
+    map.appendChild(el);
+  });
+  // meeting table in the middle
+  const mt = document.createElement("div");
+  mt.className = "meeting-table";
+  mt.innerHTML = "📋<span>Meeting table</span>";
+  mt.addEventListener("click", ev => { ev.stopPropagation(); sendNearestWalker("meetingN"); });
+  map.appendChild(mt);
+  [[35.5,46],[62.5,46],[49,34.5],[49,59.5]].forEach(c => {
+    const ch = document.createElement("div");
+    ch.className = "m-chair";
+    ch.style.left = c[0] + "%";
+    ch.style.top = c[1] + "%";
+    map.appendChild(ch);
+  });
+  // coffee corner
+  const cf = document.createElement("div");
+  cf.className = "coffee";
+  cf.innerHTML = '<div class="c-counter">☕</div><div class="c-label">Coffee corner</div>';
+  cf.addEventListener("click", ev => { ev.stopPropagation(); sendNearestWalker("coffee"); });
+  map.appendChild(cf);
+  // plants
+  [["1%","44%"],["89%","5%"]].forEach(p => {
+    const pl = document.createElement("div");
+    pl.className = "plant";
+    pl.style.left = p[0];
+    pl.style.top = p[1];
+    pl.textContent = "🪴";
+    map.appendChild(pl);
+  });
+  // entrance door
+  const dr = document.createElement("div");
+  dr.className = "door";
+  dr.textContent = "🚪 ENTRANCE";
+  map.appendChild(dr);
+  // tooltip
+  const tip = document.createElement("div");
+  tip.className = "map-tip";
+  tip.id = "map-tip";
+  map.appendChild(tip);
+  // walkers
+  walkers = [];
+  WALKERS.forEach((w, i) => {
+    const start = STAND_IDS[(i * 3 + 1) % STAND_IDS.length];
+    const n = MAP_NODES[start];
+    const el = document.createElement("div");
+    el.className = "chibi";
+    el.innerHTML =
+      '<div class="c-shadow"></div>' +
+      '<div class="c-bob"><div class="c-face" style="background:' + w.color + '">' + w.face + '</div>' +
+      '<div class="c-body" style="background:' + w.color + '"></div></div>' +
+      '<div class="c-name">' + w.name + '</div>' +
+      '<div class="c-bubble">☕</div>';
+    el.addEventListener("click", ev => { ev.stopPropagation(); showWalkerTip(walker); });
+    map.appendChild(el);
+    const walker = Object.assign({}, w, {
+      el: el,
+      bobEl: el.querySelector(".c-bob"),
+      x: n.x, y: n.y, node: start, path: [], pathIdx: 0,
+      state: "idle", idleUntil: performance.now() + 1200 + i * 900,
+      dir: 1, phase: Math.random() * 6, dest: null,
+      /* Small personal offset so two walkers sharing one stand do not
+         stack exactly on top of each other. Render-only; logic uses x/y. */
+      ox: (i - 2) * 0.012, oy: (i % 2 ? 0.008 : -0.008)
+    });
+    walkers.push(walker);
+  });
+  // player avatar — spawns at the entrance
+  const p = document.createElement("div");
+  p.className = "chibi player";
+  p.innerHTML =
+    '<div class="c-shadow"></div>' +
+    '<div class="c-bob"><div class="c-face" style="background:' + PLAYER.color + '">' + PLAYER.face + '</div>' +
+    '<div class="c-body" style="background:' + PLAYER.color + '"></div></div>' +
+    '<div class="c-name">' + PLAYER.name + '</div>';
+  map.appendChild(p);
+  PLAYER.el = p;
+  PLAYER.bobEl = p.querySelector(".c-bob");
+  PLAYER.x = MAP_NODES.door.x;
+  PLAYER.y = MAP_NODES.door.y;
+  PLAYER.state = "idle";
+  PLAYER.clickPath = [];
+  PLAYER.clickIdx = 0;
+  PLAYER.clickTarget = null;
+  // proximity bubble for the player
+  const pb = document.createElement("div");
+  pb.className = "player-bubble";
+  pb.id = "player-bubble";
+  map.appendChild(pb);
+  document.getElementById("legend").innerHTML =
+    "<span>🚶 5 walkers + you on the floor</span><span>⌨️ Move with WASD / arrow keys, or click the floor</span><span>🖱️ Click a desk to send the nearest walker</span><span>💬 Click a walker to see what they are doing</span><span>🟢 Pulsing dot = desk occupied</span><span>💾 Changes save in this browser</span>";
+}
+let lastFrame = performance.now();
+function mapTick(now){
+  requestAnimationFrame(mapTick);
+  const dt = Math.min(0.05, (now - lastFrame) / 1000);
+  lastFrame = now;
+  const map = document.getElementById("map");
+  if(!map) return;
+  const rect = map.getBoundingClientRect();
+  const visible = rect.width > 10;
+  walkers.forEach(w => {
+    if(!mapPaused && visible){
+      if(w.state === "idle" && now >= w.idleUntil) pickNextDestination(w);
+      if(w.state === "walk") stepWalker(w, dt, rect);
+      updateBob(w, now);
+    }
+    w.el.style.left = ((w.x + (w.ox || 0)) * 100) + "%";
+    w.el.style.top = ((w.y + (w.oy || 0)) * 100) + "%";
+  });
+  if(!mapPaused && visible && PLAYER.el){
+    stepPlayer(dt, rect);
+    updateBob(PLAYER, now);
+    updatePlayerBubble(rect);
+    PLAYER.el.style.left = (PLAYER.x * 100) + "%";
+    PLAYER.el.style.top = (PLAYER.y * 100) + "%";
+  }
+  updateOccupied();
+}
+document.getElementById("pause-btn").addEventListener("click", () => {
+  mapPaused = !mapPaused;
+  document.getElementById("pause-btn").textContent = mapPaused ? "▶ Resume walkers" : "⏸ Pause walkers";
+});
+/* Click on the floor = walk there (click-to-move). Desk, table, coffee
+   and walker clicks stop propagation, so they keep their own actions. */
+document.getElementById("map").addEventListener("click", ev => {
+  const map = document.getElementById("map");
+  const rect = map.getBoundingClientRect();
+  if(rect.width < 10) return;
+  playerClickMove((ev.clientX - rect.left) / rect.width, (ev.clientY - rect.top) / rect.height);
+});
+/* WASD / arrow keys move the player (only while the floor plan is open). */
+const MOVE_KEYS = ["KeyW","KeyA","KeyS","KeyD","ArrowUp","ArrowDown","ArrowLeft","ArrowRight"];
+window.addEventListener("keydown", ev => {
+  if(!MOVE_KEYS.includes(ev.code)) return;
+  if(!document.getElementById("view-floor").classList.contains("active")) return;
+  const tag = (ev.target && ev.target.tagName) || "";
+  if(tag === "SELECT" || tag === "INPUT" || tag === "TEXTAREA") return;
+  ev.preventDefault();
+  PLAYER.keys.add(ev.code);
+});
+window.addEventListener("keyup", ev => { PLAYER.keys.delete(ev.code); });
+window.addEventListener("blur", () => PLAYER.keys.clear());
+/* Debug/testing hook (used by the repo's own screenshot checks). */
+window.__office = { player: PLAYER, get walkers(){ return walkers; }, nodes: MAP_NODES, solids: SOLIDS };
 
 /* ================= BOARD ================= */
 function prioLabel(p){ return p==="urgent" ? "Urgent" : (p==="important" ? "Important" : "Normal"); }
@@ -388,7 +946,9 @@ function renderSkills(){
   });
 }
 
-function renderAll(){ renderDesks(); renderBoard(); renderSkills(); }
+function renderAll(){ updateStationCounts(); renderBoard(); renderSkills(); }
+buildMap();
+requestAnimationFrame(mapTick);
 renderAll();
 </script>
 </body>

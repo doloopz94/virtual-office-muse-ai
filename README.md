@@ -9,7 +9,9 @@ A virtual office template run by **Muse** — your AI office manager. Seven desk
 ## Screenshots
 
 ![2D floor plan](docs/screenshots/denah-2d.png)
-*2D floor plan — seven desks, one character per desk, live local clock.*
+*Animated 2D floor plan — your own avatar plus five colleagues walking between desks, the meeting table, and the coffee corner; live local clock.*
+
+> **Single-player demo:** the floor plan plays like Gather.town for one player — walk around with WASD, arrow keys, or click-to-move. Live multiplayer (other people walking with you in real time) needs a server and is out of scope for this static page.
 
 ![Task board](docs/screenshots/papan-tugas.png)
 *Task board — Backlog → In progress → Waiting for owner → Done.*
